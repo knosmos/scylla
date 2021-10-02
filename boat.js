@@ -74,6 +74,18 @@ function keyDownHandler(event) {
     else if(event.keyCode == 38) {
     	upPressed = true;
     }
+    else if(event.keyCode == 65) {
+        leftPressed = true;
+    }
+    else if(event.keyCode == 87) {
+        upPressed = true;
+    }
+    else if(event.keyCode == 83) {
+        downPressed = true;
+    }
+    else if(event.keyCode == 68) {
+        rightPressed = true;
+    }
 }
 
 function keyUpHandler(event) {
@@ -88,6 +100,18 @@ function keyUpHandler(event) {
     }
     else if(event.keyCode == 38) {
     	upPressed = false;
+    }
+    else if(event.keyCode == 65) {
+        leftPressed = false;
+    }
+    else if(event.keyCode == 87) {
+        upPressed = false;
+    }
+    else if(event.keyCode == 83) {
+        downPressed = false;
+    }
+    else if(event.keyCode == 68) {
+        rightPressed = false;
     }
 }
 

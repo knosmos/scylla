@@ -29,6 +29,10 @@ class obj{
             gameOver = true;
             let sound = new Audio("assets/crash.mp3");
             sound.play();
+            let id = window.setTimeout(function() {}, 0);
+            while (id--) {
+                window.clearTimeout(id);
+            }
         }
 
         if (this.x > -20 && !gameOver) {
@@ -67,7 +71,7 @@ class coin extends obj{
             this.elem.style.opacity = "0";
             score += 1;
             document.getElementById("score").innerHTML = score;
-            scrollSpeed += 0.01;
+            scrollSpeed += 0.05;
             this.collected = true;
             let sound = new Audio("assets/coin.wav");
             sound.play();
@@ -101,6 +105,10 @@ class scylla extends obj {
             gameOver = true;
             let sound = new Audio("assets/crash.mp3");
             sound.play();
+            let id = window.setTimeout(function() {}, 0);
+            while (id--) {
+                window.clearTimeout(id);
+            }
         }
 
         if (this.x > -20 && !gameOver) {
@@ -134,17 +142,19 @@ function obstacleSpawner() {
         else {
             makeCoin();
             if (Math.random() > 0.5) {
-                let s = new scylla(window.innerWidth, Math.random()*window.innerHeight);
+                let s = new scylla(window.innerWidth, 100+Math.random()*(window.innerHeight-200));
                 s.move();
             }
         }
-        columnsSpawned += 1;           
+        columnsSpawned += 1;
+        setTimeout(obstacleSpawner, (2/scrollSpeed)*700);
     }
-    else {
-        clearInterval(obsInterval);
-    }
+    //else {
+    //    clearInterval(obsInterval);
+    //}
 }
-let obsInterval = setInterval(obstacleSpawner, 700);
+// let obsInterval = setInterval(obstacleSpawner, 700);
+obstacleSpawner();
 
 function reset() {
     gameOver = false;
@@ -156,8 +166,9 @@ function reset() {
     // delete all obstacles
     document.getElementById("obstacles").innerHTML = "";
     // enable spawner
-    clearInterval(obsInterval);
-    obsInterval = setInterval(obstacleSpawner, 700);
+    //clearInterval(obsInterval);
+    //obsInterval = setInterval(obstacleSpawner, 700);
     document.getElementById("score").innerHTML = "0";
+    setTimeout(obstacleSpawner, 700);
 }
 onmousedown = reset;
